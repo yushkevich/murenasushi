@@ -1,0 +1,5 @@
+# Place hero videos here:
+# - hero1.mp4, hero1.webm (optional), hero1-poster.jpg
+# - hero2.mp4, hero2.webm (optional), hero2-poster.jpg
+# - hero3.mp4, hero3.webm (optional), hero3-poster.jpg
+# Add more videos in src/config/heroVideos.ts
