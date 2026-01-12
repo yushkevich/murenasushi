@@ -1,0 +1,15 @@
+murenasushi.pl {
+  encode zstd gzip
+  reverse_proxy web:3000
+
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "DENY"
+    Referrer-Policy "strict-origin-when-cross-origin"
+  }
+}
+
+www.murenasushi.pl {
+  redir https://murenasushi.pl{uri} permanent
+}
