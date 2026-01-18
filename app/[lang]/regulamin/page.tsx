@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: RegulaminPageProps): Promise<
       languages: {
         pl: `${baseUrl}/pl/regulamin`,
         en: `${baseUrl}/en/regulamin`,
-        ua: `${baseUrl}/ua/regulamin`,
+        uk: `${baseUrl}/ua/regulamin`,
         ru: `${baseUrl}/ru/regulamin`,
         'x-default': `${baseUrl}/pl/regulamin`,
       },

@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: DeliveryPageProps): Promise<M
       languages: {
         pl: `${baseUrl}/pl/delivery`,
         en: `${baseUrl}/en/delivery`,
-        ua: `${baseUrl}/ua/delivery`,
+        uk: `${baseUrl}/ua/delivery`,
         ru: `${baseUrl}/ru/delivery`,
         'x-default': `${baseUrl}/pl/delivery`,
       },

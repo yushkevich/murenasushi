@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: TermsPageProps): Promise<Meta
       languages: {
         pl: `${baseUrl}/pl/terms`,
         en: `${baseUrl}/en/terms`,
-        ua: `${baseUrl}/ua/terms`,
+        uk: `${baseUrl}/ua/terms`,
         ru: `${baseUrl}/ru/terms`,
         'x-default': `${baseUrl}/pl/terms`,
       },
