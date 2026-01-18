@@ -7,6 +7,8 @@ export default function HeroVideo() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadedVideos, setLoadedVideos] = useState<Set<number>>(new Set([0]));
+  const [videoReady, setVideoReady] = useState<Set<number>>(new Set());
+  const [failedVideos, setFailedVideos] = useState<Set<number>>(new Set());
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const fadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const loadTimeoutRef = useRef<number | ReturnType<typeof setTimeout> | null>(null);
@@ -23,22 +25,23 @@ export default function HeroVideo() {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  // Lazy load next videos after initial paint
+  // Lazy load all videos progressively
   useEffect(() => {
     if (prefersReducedMotion) return;
 
     const loadNextVideos = () => {
-      // Load next 2 videos after initial paint
-      const nextIndices = [
-        (currentIndex + 1) % heroVideos.length,
-        (currentIndex + 2) % heroVideos.length,
-      ];
-
-      nextIndices.forEach((idx) => {
-        if (!loadedVideos.has(idx)) {
+      // Load all videos progressively
+      const unloadedVideos = heroVideos
+        .map((_, idx) => idx)
+        .filter(idx => !loadedVideos.has(idx));
+      
+      if (unloadedVideos.length > 0) {
+        // Load next 2 unloaded videos
+        const nextToLoad = unloadedVideos.slice(0, 2);
+        nextToLoad.forEach((idx) => {
           setLoadedVideos((prev) => new Set([...prev, idx]));
-        }
-      });
+        });
+      }
     };
 
     // Use requestIdleCallback if available, otherwise setTimeout
@@ -59,35 +62,71 @@ export default function HeroVideo() {
     };
   }, [currentIndex, prefersReducedMotion, loadedVideos]);
 
-  // Auto-advance videos with cross-fade
+  // Manage video playback and auto-advance
   useEffect(() => {
     if (prefersReducedMotion) return;
 
-    const video = videoRefs.current[currentIndex];
-    if (!video) return;
+    const currentVideo = videoRefs.current[currentIndex];
+    
+    // Pause all other videos
+    videoRefs.current.forEach((video, idx) => {
+      if (video && idx !== currentIndex) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
 
-    // Play the current video
+    if (!currentVideo) return;
+
+    // Play the current video if ready
     const playVideo = async () => {
       try {
-        await video.play();
+        currentVideo.currentTime = 0;
+        await currentVideo.play();
       } catch (error) {
-        // Ignore autoplay errors
+        console.warn('Autoplay failed for video:', currentIndex, error);
       }
     };
 
-    playVideo();
+    // Play immediately if video is ready, otherwise wait for it
+    if (videoReady.has(currentIndex)) {
+      playVideo();
+    }
 
-    // Advance to next video after a set duration (5 seconds)
+    // Set timeout to advance to next video
     fadeTimeoutRef.current = setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % heroVideos.length);
-    }, 5000); // 5 seconds per video
+    }, 6000); // 6 seconds per video
 
     return () => {
       if (fadeTimeoutRef.current) {
         clearTimeout(fadeTimeoutRef.current);
       }
+      // Pause current video on cleanup
+      if (currentVideo) {
+        currentVideo.pause();
+      }
     };
-  }, [currentIndex, prefersReducedMotion]);
+  }, [currentIndex, prefersReducedMotion, videoReady]);
+
+  const handleVideoLoaded = (index: number) => {
+    setVideoReady((prev) => new Set([...prev, index]));
+    
+    // If this is the current video, play it
+    if (index === currentIndex) {
+      const video = videoRefs.current[index];
+      if (video) {
+        video.play().catch(() => {
+          // Ignore autoplay errors
+        });
+      }
+    }
+  };
+
+  const handleVideoError = (index: number) => {
+    console.error('Video failed to load:', heroVideos[index].srcMp4);
+    setFailedVideos((prev) => new Set([...prev, index]));
+  };
 
   if (prefersReducedMotion) {
     return (
@@ -111,6 +150,7 @@ export default function HeroVideo() {
       {heroVideos.map((videoConfig, index) => {
         const isActive = index === currentIndex;
         const shouldLoad = loadedVideos.has(index);
+        const hasFailed = failedVideos.has(index);
 
         return (
           <div
@@ -119,18 +159,27 @@ export default function HeroVideo() {
               isActive ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'
             }`}
           >
-            {shouldLoad ? (
+            {hasFailed || !shouldLoad ? (
+              <div 
+                className="absolute inset-0 w-full h-full bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${videoConfig.poster})`,
+                }}
+              />
+            ) : (
               <video
                 ref={(el) => {
                   videoRefs.current[index] = el;
                 }}
-                autoPlay={isActive}
                 muted
                 loop
                 playsInline
-                preload={index === 0 ? 'metadata' : 'none'}
+                preload={index === 0 ? 'metadata' : 'auto'}
+                poster={videoConfig.poster}
                 className="absolute inset-0 w-full h-full object-cover"
                 aria-label={`Murena restaurant hero video ${index + 1}`}
+                onLoadedData={() => handleVideoLoaded(index)}
+                onError={() => handleVideoError(index)}
               >
                 {videoConfig.srcWebm && (
                   <source src={videoConfig.srcWebm} type="video/webm" />
@@ -142,13 +191,6 @@ export default function HeroVideo() {
                   className="w-full h-full object-cover"
                 />
               </video>
-            ) : (
-              <div 
-                className="absolute inset-0 w-full h-full bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${videoConfig.poster})`,
-                }}
-              />
             )}
           </div>
         );

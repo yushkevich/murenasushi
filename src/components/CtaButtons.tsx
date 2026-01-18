@@ -1,53 +1,82 @@
 'use client';
 
 import { useState } from 'react';
-import DeliveryModal from './DeliveryModal';
+import Link from 'next/link';
+import WoltGlovoModal from './WoltGlovoModal';
 
 interface CtaButtonsProps {
-  orderLabel: string;
+  reservationLabel: string;
   deliveryLabel: string;
-  orderUrl: string;
-  deliveryModalTitle?: string;
-  deliveryModalCloseLabel?: string;
+  woltGlovoLabel: string;
+  reservationUrl: string;
+  deliveryUrl: string;
+  woltUrl: string;
+  glovoUrl: string;
+  locale: string;
 }
 
 export default function CtaButtons({ 
-  orderLabel, 
-  deliveryLabel, 
-  orderUrl,
-  deliveryModalTitle,
-  deliveryModalCloseLabel
+  reservationLabel,
+  deliveryLabel,
+  woltGlovoLabel,
+  reservationUrl,
+  deliveryUrl,
+  woltUrl,
+  glovoUrl,
+  locale,
 }: CtaButtonsProps) {
-  const [isDeliveryModalOpen, setIsDeliveryModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const uberUrl = process.env.NEXT_PUBLIC_UBER_EATS_URL || '#';
-  const boltUrl = process.env.NEXT_PUBLIC_BOLT_FOOD_URL || '#';
+  // Check if delivery URL is internal
+  const isInternalDelivery = deliveryUrl.startsWith('/');
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+      <div className="flex flex-col gap-4 justify-center items-stretch max-w-md mx-auto w-full px-4">
+        {/* Reservation Button */}
         <a
-          href={orderUrl}
+          href={reservationUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-8 py-4 border-2 text-text-primary font-semibold text-lg rounded-full hover:opacity-90 transition-opacity focus:outline-none focus:ring-4 text-center"
+          className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
         >
-          {orderLabel}
+          {reservationLabel}
         </a>
+
+        {/* Delivery Button */}
+        {isInternalDelivery ? (
+          <Link
+            href={`/${locale}${deliveryUrl}`}
+            className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
+          >
+            {deliveryLabel}
+          </Link>
+        ) : (
+          <a
+            href={deliveryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
+          >
+            {deliveryLabel}
+          </a>
+        )}
+
+        {/* Wolt/Glovo Button */}
         <button
-          onClick={() => setIsDeliveryModalOpen(true)}
-          className="px-8 py-4 bg-transparent border-2 text-text-primary font-semibold text-lg rounded-full hover:bg-white/10 hover:border-[rgba(255,255,255,0.15)] transition-all focus:outline-none focus:ring-4 focus:ring-accent-blue/50"
+          onClick={() => setIsModalOpen(true)}
+          className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
         >
-          {deliveryLabel}
+          {woltGlovoLabel}
         </button>
       </div>
-      <DeliveryModal
-        isOpen={isDeliveryModalOpen}
-        onClose={() => setIsDeliveryModalOpen(false)}
-        uberUrl={uberUrl}
-        boltUrl={boltUrl}
-        title={deliveryModalTitle}
-        closeLabel={deliveryModalCloseLabel}
+
+      <WoltGlovoModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        woltUrl={woltUrl}
+        glovoUrl={glovoUrl}
+        title={woltGlovoLabel}
       />
     </>
   );

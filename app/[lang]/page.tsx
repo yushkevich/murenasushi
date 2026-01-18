@@ -6,7 +6,7 @@ import CtaButtons from '@/src/components/CtaButtons';
 import InfoSection from '@/src/components/InfoSection';
 import GalleryCollage from '@/src/components/GalleryCollage';
 import SeoJsonLd from '@/src/components/SeoJsonLd';
-import { instagramUrl, choiceQrUrl, reservationUrl } from '@/src/content/siteContent';
+import { ctaLinks } from '@/src/config/ctaLinks';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -72,36 +72,24 @@ export default async function LangPage({ params }: PageProps) {
       <SeoJsonLd locale={locale} />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-14 lg:px-14">
         <HeroVideo />
         
 
         <div className="relative z-20 max-w-4xl mx-auto text-center text-text-primary">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12">
             {content.h1}
           </h1>
           
-          <p className="text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-4 text-text-primary">
-            {content.concept}
-          </p>
-          
-          <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 text-text-muted">
-            <a
-              href={reservationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-text-primary transition-colors underline underline-offset-2 focus:outline-none focus:ring-2 focus:ring-accent-blue rounded"
-            >
-              {content.note}
-            </a>
-          </p>
-          
           <CtaButtons
-            orderLabel={content.buttons.order}
+            reservationLabel={content.buttons.reservation}
             deliveryLabel={content.buttons.delivery}
-            orderUrl={choiceQrUrl}
-            deliveryModalTitle={content.buttons.deliveryModalTitle}
-            deliveryModalCloseLabel={content.buttons.deliveryModalClose}
+            woltGlovoLabel={content.buttons.woltGlovo}
+            reservationUrl={ctaLinks.reservation}
+            deliveryUrl={ctaLinks.delivery}
+            woltUrl={ctaLinks.wolt}
+            glovoUrl={ctaLinks.glovo}
+            locale={locale}
           />
         </div>
       </section>
@@ -109,10 +97,16 @@ export default async function LangPage({ params }: PageProps) {
       {/* Info Section */}
       <InfoSection
         hours={content.hours}
+        hoursDelivery={content.hoursDelivery}
         address={content.address}
         phone={content.phone}
+        phoneDelivery={content.phoneDelivery}
         callLabel={content.buttons.call}
         mapsLabel={content.buttons.maps}
+        instagramLabel={content.buttons.instagram}
+        restaurantHoursLabel={content.labels.restaurantHours}
+        deliveryHoursLabel={content.labels.deliveryHours}
+        deliveryLabel={content.labels.delivery}
       />
 
       {/* Gallery */}

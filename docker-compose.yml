@@ -4,8 +4,6 @@ services:
     restart: unless-stopped
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_UBER_EATS_URL: "${NEXT_PUBLIC_UBER_EATS_URL:-#}"
-      NEXT_PUBLIC_BOLT_FOOD_URL: "${NEXT_PUBLIC_BOLT_FOOD_URL:-#}"
 
   caddy:
     image: caddy:2

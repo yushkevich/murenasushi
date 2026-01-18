@@ -114,15 +114,7 @@ Place exactly 18 gallery images at:
 
 ## 🌍 Environment Variables
 
-Create a `.env.local` file in the root directory:
-
-```env
-# Delivery aggregator URLs (optional, defaults to "#")
-NEXT_PUBLIC_UBER_EATS_URL=https://www.ubereats.com/...
-NEXT_PUBLIC_BOLT_FOOD_URL=https://bolt.eu/food/...
-```
-
-If these are not set, the delivery modal will show links that point to `#` (you can update them later).
+No environment variables required for basic functionality. All configuration is managed through code.
 
 ## 📝 Content & Translations
 
@@ -162,7 +154,7 @@ src/content/siteContent.ts
 - ✅ Accessible (keyboard navigation, ARIA labels, focus states)
 - ✅ SEO optimized (metadata, JSON-LD, sitemap, robots.txt)
 - ✅ Gallery with lightbox (18 images, collage layout)
-- ✅ Delivery modal (Uber Eats / Bolt Food)
+- ✅ Delivery modal (Wolt / Glovo)
 - ✅ Language switcher in header
 - ✅ Respects `prefers-reduced-motion`
 

@@ -78,27 +78,6 @@ export default function GalleryCollage({ title }: GalleryCollageProps) {
     'md:col-span-4 md:row-span-4', // 18
   ];
 
-  const mobileRowSpans = [
-    'row-span-3', // 1
-    'row-span-2', // 2
-    'row-span-2', // 3
-    'row-span-3', // 4
-    'row-span-2', // 5
-    'row-span-2', // 6
-    'row-span-3', // 7
-    'row-span-2', // 8
-    'row-span-2', // 9
-    'row-span-3', // 10
-    'row-span-2', // 11
-    'row-span-2', // 12
-    'row-span-2', // 13
-    'row-span-2', // 14
-    'row-span-3', // 15
-    'row-span-3', // 16
-    'row-span-3', // 17
-    'row-span-3', // 18
-  ];
-
   return (
     <>
       <section className="py-16 sm:py-20 lg:py-24" style={{ backgroundColor: 'rgba(27,31,34, 0.2)' }}>
@@ -159,30 +138,42 @@ export default function GalleryCollage({ title }: GalleryCollageProps) {
             ))}
           </div>
 
-          {/* Mobile: 2-column grid */}
-          <div className="grid md:hidden grid-cols-2 gap-3 auto-rows-[150px]">
-            {galleryImages.map((img, index) => (
-              <button
-                key={index}
-                onClick={() => openLightbox(index)}
-                className={`col-span-1 ${mobileRowSpans[index]} relative overflow-hidden rounded-lg border border-[rgba(255,255,255,0.08)] hover:border-[rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-accent-blue`}
-                aria-label={`View image ${index + 1}`}
-              >
-                <Image
-                  src={galleryImages[index].src}
-                  alt={`Gallery image ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="50vw"
-                  placeholder="blur"
-                  blurDataURL={galleryImages[index].blurDataURL}
-                  loading="lazy"
-                  onError={(e) => {
-                    console.error(`Failed to load gallery image: ${galleryImages[index].src}`);
-                  }}
+          {/* Mobile: Swipeable carousel with snap points */}
+          <div className="md:hidden">
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-4 scrollbar-hide -mx-4 px-4">
+              {galleryImages.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => openLightbox(index)}
+                  className="relative flex-shrink-0 w-[85vw] h-[60vh] overflow-hidden rounded-lg border border-[rgba(255,255,255,0.08)] snap-center focus:outline-none focus:ring-4 focus:ring-accent-blue"
+                  aria-label={`View image ${index + 1}`}
+                >
+                  <Image
+                    src={galleryImages[index].src}
+                    alt={`Gallery image ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="85vw"
+                    placeholder="blur"
+                    blurDataURL={galleryImages[index].blurDataURL}
+                    loading="lazy"
+                    onError={(e) => {
+                      console.error(`Failed to load gallery image: ${galleryImages[index].src}`);
+                    }}
+                  />
+                </button>
+              ))}
+            </div>
+            {/* Scroll indicator */}
+            <div className="flex justify-center gap-1 mt-4">
+              {galleryImages.map((_, index) => (
+                <div
+                  key={index}
+                  className="w-1.5 h-1.5 rounded-full bg-white/30"
+                  aria-hidden="true"
                 />
-              </button>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
