@@ -4,6 +4,8 @@ services:
     restart: unless-stopped
     environment:
       NODE_ENV: production
+      NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: G-G1D127B6NY
+      NEXT_PUBLIC_GOOGLE_ADS_ID: 716-742-8766
 
   caddy:
     image: caddy:2

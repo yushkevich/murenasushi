@@ -57,7 +57,7 @@ export const siteContent: Record<Locale, SiteContent> = {
     hoursDelivery: '17:00–22:00',
     address: 'Solec 46, 00-384 Warszawa, Polska',
     phone: '+48 732 607 102',
-    phoneDelivery: '+48 732 607 102',
+    phoneDelivery: '+48 791 607 102',
     buttons: {
       order: 'ZAMÓW ONLINE',
       delivery: 'DOSTAWA',
@@ -111,7 +111,7 @@ export const siteContent: Record<Locale, SiteContent> = {
     hoursDelivery: '17:00–22:00',
     address: 'Solec 46, 00-384 Варшава, Польша',
     phone: '+48 732 607 102',
-    phoneDelivery: '+48 732 607 102',
+    phoneDelivery: '+48 791 607 102',
     buttons: {
       order: 'ЗАКАЗАТЬ ОНЛАЙН',
       delivery: 'ДОСТАВКА',
@@ -166,7 +166,7 @@ export const siteContent: Record<Locale, SiteContent> = {
     hoursDelivery: '17:00–22:00',
     address: 'Solec 46, 00-384 Варшава, Польща',
     phone: '+48 732 607 102',
-    phoneDelivery: '+48 732 607 102',
+    phoneDelivery: '+48 791 607 102',
     buttons: {
       order: 'ЗАМОВИТИ ОНЛАЙН',
       delivery: 'ДОСТАВКА',
@@ -221,7 +221,7 @@ export const siteContent: Record<Locale, SiteContent> = {
     hoursDelivery: '17:00–22:00',
     address: 'Solec 46, Warsaw, Poland 00-384',
     phone: '+48 732 607 102',
-    phoneDelivery: '+48 732 607 102',
+    phoneDelivery: '+48 791 607 102',
     buttons: {
       order: 'ORDER ONLINE',
       delivery: 'DELIVERY',

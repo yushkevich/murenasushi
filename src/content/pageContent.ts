@@ -34,7 +34,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             'Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem przez nich z usług poprzez Stronę Internetową Murena Seafood Restaurant.',
             'Administratorem danych osobowych zbieranych za pośrednictwem Strony Internetowej jest Murena Seafood Restaurant z siedzibą przy Solec 46, 00-384 Warszawa.',
-           'Z Administratorem można skontaktować się poprzez e-mail: kontakt@murenasushi.pl lub telefonicznie pod numerem +48 732 607 102.',
+           'Z Administratorem można skontaktować się poprzez e-mail: admin@solec46.com lub telefonicznie pod numerem +48 791 607 102.',
           ],
         },
         {
@@ -106,7 +106,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             '1. Niniejszy Regulamin określa zasady korzystania ze Strony Internetowej oraz zasady składania zamówień w Restauracji Murena Seafood Restaurant.',
             '2. Administratorem Strony Internetowej i Usługodawcą jest Murena Seafood Restaurant z siedzibą przy Solec 46, 00-384 Warszawa.',
-            '3. Kontakt z Restauracją możliwy jest pod numerem telefonu +48 732 607 102 lub adresem e-mail: kontakt@murenasushi.pl.',
+            '3. Kontakt z Restauracją możliwy jest pod numerem telefonu +48 791 607 102 lub adresem e-mail: admin@solec46.com.',
             '4. Warunkiem korzystania ze Strony Internetowej jest zapoznanie się z niniejszym Regulaminem i jego akceptacja.',
           ],
         },
@@ -125,7 +125,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: '§3 Składanie zamówień',
           content: [
             '1. Zamówienia można składać:',
-            '• Telefonicznie pod numerem +48 732 607 102',
+            '• Telefonicznie pod numerem +48 791 607 102',
             '• Poprzez Stronę Internetową',
             '• Poprzez platformy partnerskie (Wolt, Glovo)',
             '2. Wszystkie ceny podane na Stronie Internetowej są cenami brutto w złotych polskich.',
@@ -163,8 +163,8 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             '1. Reklamacje dotyczące jakości Towarów należy zgłaszać niezwłocznie po ich otrzymaniu.',
             '2. Reklamacje można składać:',
-            '• Telefonicznie: +48 732 607 102',
-            '• E-mailowo: kontakt@murenasushi.pl',
+            '• Telefonicznie: +48 791 607 102',
+            '• E-mailowo: admin@solec46.com',
             '3. Restauracja rozpatruje reklamacje w ciągu 14 dni od daty jej otrzymania.',
           ],
         },
@@ -213,7 +213,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: 'Jak zamówić',
           content: [
             'Zamówienie z dostawą można złożyć na kilka sposobów:',
-            '1. Przez telefon: +48 732 607 102',
+            '1. Przez telefon: +48 791 607 102',
             '2. Przez naszą stronę internetową: murenasushi.pl',
             '3. Przez aplikacje partnerskie:',
             '   • Wolt',
@@ -261,7 +261,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             'This Privacy Policy sets out the rules for processing and protection of personal data provided by Users in connection with their use of services through the Murena Seafood Restaurant Website.',
             'The controller of personal data collected through the Website is Murena Seafood Restaurant with its registered office at Solec 46, 00-384 Warsaw.',
-            'The Administrator can be contacted via e-mail: admin@solec46.com or by phone at +48 732 607 102.',
+            'The Administrator can be contacted via e-mail: admin@solec46.com or by phone at +48 791 607 102.',
           ],
         },
         {
@@ -333,7 +333,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             '1. These Terms and Conditions govern the use of the Website and the rules for placing orders at Murena Seafood Restaurant.',
             '2. The administrator of the Website and the Service Provider is Murena Seafood Restaurant with its registered office at Solec 46, 00-384 Warsaw.',
-            '3. Contact with the Restaurant is possible by phone at +48 732 607 102 or email: admin@solec46.com.',
+            '3. Contact with the Restaurant is possible by phone at +48 791 607 102 or email: admin@solec46.com.',
             '4. A condition for using the Website is reading and accepting these Terms and Conditions.',
           ],
         },
@@ -352,7 +352,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: '§3 Placing Orders',
           content: [
             '1. Orders can be placed:',
-            '• By phone at +48 732 607 102',
+            '• By phone at +48 791 607 102',
             '• Through the Website',
             '• Through partner platforms (Wolt, Glovo)',
             '2. All prices on the Website are gross prices in Polish zlotys.',
@@ -390,7 +390,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             '1. Complaints regarding the quality of Goods should be reported immediately after receipt.',
             '2. Complaints can be submitted:',
-            '• By phone: +48 732 607 102',
+            '• By phone: +48 791 607 102',
             '• By email: admin@solec46.com',
             '3. The Restaurant processes complaints within 14 days from the date of receipt.',
           ],
@@ -440,7 +440,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: 'How to Order',
           content: [
             'You can place a delivery order in several ways:',
-            '1. By phone: +48 732 607 102',
+            '1. By phone: +48 791 607 102',
             '2. Through our website: murenasushi.pl',
             '3. Through partner apps:',
             '   • Wolt',
@@ -488,7 +488,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             'Ця Політика конфіденційності визначає правила обробки та захисту персональних даних, наданих Користувачами у зв\'язку з використанням послуг через веб-сайт Murena Seafood Restaurant.',
             'Адміністратором персональних даних, зібраних через веб-сайт, є Murena Seafood Restaurant за адресою: Solec 46, 00-384 Варшава.',
-            'З Адміністратором можна зв\'язатися електронною поштою: admin@solec46.com або по телефону +48 732 607 102.',
+            'З Адміністратором можна зв\'язатися електронною поштою: admin@solec46.com або по телефону +48 791 607 102.',
           ],
         },
         {
@@ -560,7 +560,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             '1. Ці Правила регулюють використання веб-сайту та правила розміщення замовлень у Murena Seafood Restaurant.',
             '2. Адміністратором веб-сайту та постачальником послуг є Murena Seafood Restaurant за адресою: Solec 46, 00-384 Варшава.',
-            '3. Зв\'язатися з рестораном можна по телефону +48 732 607 102 або електронною поштою: admin@solec46.com.',
+            '3. Зв\'язатися з рестораном можна по телефону +48 791 607 102 або електронною поштою: admin@solec46.com.',
             '4. Умовою використання веб-сайту є ознайомлення з цими Правилами та їх прийняття.',
           ],
         },
@@ -579,7 +579,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: '§3 Розміщення замовлень',
           content: [
             '1. Замовлення можна розмістити:',
-            '• По телефону +48 732 607 102',
+            '• По телефону +48 791 607 102',
             '• Через веб-сайт',
             '• Через платформи партнерів (Wolt, Glovo)',
             '2. Усі ціни на веб-сайті є брутто-цінами в польських злотих.',
@@ -617,7 +617,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             '1. Скарги щодо якості Товарів слід подавати негайно після їх отримання.',
             '2. Скарги можна подати:',
-            '• По телефону: +48 732 607 102',
+            '• По телефону: +48 791 607 102',
             '• Електронною поштою: admin@solec46.com',
             '3. Ресторан розглядає скарги протягом 14 днів з дати їх отримання.',
           ],
@@ -667,7 +667,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: 'Як замовити',
           content: [
             'Ви можете зробити замовлення з доставкою кількома способами:',
-            '1. По телефону: +48 732 607 102',
+            '1. По телефону: +48 791 607 102',
             '2. Через наш веб-сайт: murenasushi.pl',
             '3. Через додатки партнерів:',
             '   • Wolt',
@@ -715,7 +715,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             'Настоящая Политика конфиденциальности определяет правила обработки и защиты персональных данных, предоставленных Пользователями в связи с использованием услуг через веб-сайт Murena Seafood Restaurant.',
             'Администратором персональных данных, собранных через веб-сайт, является Murena Seafood Restaurant по адресу: Solec 46, 00-384 Варшава.',
-            'С Администратором можно связаться по электронной почте: admin@solec46.com или по телефону +48 732 607 102.',
+            'С Администратором можно связаться по электронной почте: admin@solec46.com или по телефону +48 791 607 102.',
           ],
         },
         {
@@ -787,7 +787,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             '1. Настоящие Правила регулируют использование веб-сайта и правила размещения заказов в Murena Seafood Restaurant.',
             '2. Администратором веб-сайта и поставщиком услуг является Murena Seafood Restaurant по адресу: Solec 46, 00-384 Варшава.',
-            '3. Связаться с рестораном можно по телефону +48 732 607 102 или электронной почте: admin@solec46.com.',
+            '3. Связаться с рестораном можно по телефону +48 791 607 102 или электронной почте: admin@solec46.com.',
             '4. Условием использования веб-сайта является ознакомление с настоящими Правилами и их принятие.',
           ],
         },
@@ -806,7 +806,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: '§3 Размещение заказов',
           content: [
             '1. Заказы можно разместить:',
-            '• По телефону +48 732 607 102',
+            '• По телефону +48 791 607 102',
             '• Через веб-сайт',
             '• Через платформы партнеров (Wolt, Glovo)',
             '2. Все цены на веб-сайте являются брутто-ценами в польских злотых.',
@@ -844,7 +844,7 @@ export const pageContent: Record<Locale, PageContent> = {
           content: [
             '1. Жалобы относительно качества Товаров следует подавать немедленно после их получения.',
             '2. Жалобы можно подать:',
-            '• По телефону: +48 732 607 102',
+            '• По телефону: +48 791 607 102',
             '• По электронной почте: admin@solec46.com',
             '3. Ресторан рассматривает жалобы в течение 14 дней с даты их получения.',
           ],
@@ -894,7 +894,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: 'Как заказать',
           content: [
             'Вы можете сделать заказ с доставкой несколькими способами:',
-            '1. По телефону: +48 732 607 102',
+            '1. По телефону: +48 791 607 102',
             '2. Через наш веб-сайт: murenasushi.pl',
             '3. Через приложения партнеров:',
             '   • Wolt',

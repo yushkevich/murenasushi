@@ -77,7 +77,7 @@ export default async function LangPage({ params }: PageProps) {
         
 
         <div className="relative z-20 max-w-4xl mx-auto text-center text-text-primary">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12">
+          <h1 className="font-rangoflys text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12 pt-24 sm:pt-16 md:pt-20 lg:pt-24">
             {content.h1}
           </h1>
           
