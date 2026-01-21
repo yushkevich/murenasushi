@@ -3,7 +3,7 @@
 
 export const ctaLinks = {
   reservation: 'https://mojstolik.pl/restauracja/MURENA/336821ac3c41e0605390031537e06964',
-  delivery: 'https://seagull.choiceqr.com/section:murena-christmas-sets/new-years-set',
+  delivery: 'https://murena.choiceqr.com/delivery/section:murena/zestawy',
   wolt: '#', // Wolt URL - update with actual link
   glovo: '#', // Glovo URL - update with actual link
 };

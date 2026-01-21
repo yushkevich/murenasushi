@@ -32,7 +32,7 @@ export default function InfoSection({
   const googleMapsUrl = getGoogleMapsUrl(address);
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24" style={{ backgroundColor: 'rgba(27,31,34, 0.6)' }}>
+    <section className="py-16 sm:py-20 lg:py-24" style={{ backgroundColor: 'rgba(21, 20, 51, 0.2)' }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-6 sm:space-y-8 text-center">
           <div className="space-y-2">
