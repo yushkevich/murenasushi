@@ -36,10 +36,4 @@ export const heroVideos: HeroVideoConfig[] = [
     poster: '/media/hero/hero5-poster.png',
     duration: 5,
   },
-  {
-    srcMp4: '/media/hero/hero6.mp4',
-    srcWebm: '/media/hero/hero6.webm',
-    poster: '/media/hero/hero6-poster.png',
-    duration: 5,
-  },
 ];
