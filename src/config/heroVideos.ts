@@ -5,11 +5,11 @@ export interface HeroVideoConfig {
 }
 
 export const heroVideos: HeroVideoConfig[] = [
-  {
-    srcMp4: '/media/hero/hero1.mp4',
-    srcWebm: '/media/hero/hero1.webm',
-    poster: '/media/hero/hero1-poster.png',
-  },
+  // {
+  //   srcMp4: '/media/hero/hero1.mp4',
+  //   srcWebm: '/media/hero/hero1.webm',
+  //   poster: '/media/hero/hero1-poster.png',
+  // },
   {
     srcMp4: '/media/hero/hero2.mp4',
     srcWebm: '/media/hero/hero2.webm',
@@ -25,9 +25,9 @@ export const heroVideos: HeroVideoConfig[] = [
     srcWebm: '/media/hero/hero4.webm',
     poster: '/media/hero/hero4-poster.png',
   },
-  {
-    srcMp4: '/media/hero/hero5.mp4',
-    srcWebm: '/media/hero/hero5.webm',
-    poster: '/media/hero/hero5-poster.png',
-  },
+  // {
+  //   srcMp4: '/media/hero/hero5.mp4',
+  //   srcWebm: '/media/hero/hero5.webm',
+  //   poster: '/media/hero/hero5-poster.png',
+  // },
 ];

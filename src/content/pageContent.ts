@@ -203,8 +203,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: 'Godziny dostaw',
           content: [
             'Dostawy realizujemy w następujących godzinach:',
-            '• Niedziela – Czwartek: 17:00 – 21:30',
-            '• Piątek – Sobota: 17:00 – 21:30',
+            '16:00 – 21:30',
             'Zamówienia przyjmujemy do godziny 21:30.',
             'Czas dostawy wynosi zwykle 45-60 minut od momentu potwierdzenia zamówienia.',
           ],
@@ -430,8 +429,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: 'Delivery Hours',
           content: [
             'We deliver during the following hours:',
-            '• Sunday – Thursday: 17:00 – 21:30',
-            '• Friday – Saturday: 17:00 – 21:30',
+            '16:00 – 21:30',
             'We accept orders until 21:30.',
             'Delivery time is usually 45-60 minutes from order confirmation.',
           ],
@@ -657,8 +655,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: 'Години доставки',
           content: [
             'Ми доставляємо у наступні години:',
-            '• Неділя – Четвер: 17:00 – 21:30',
-            '• П\'ятниця – Субота: 17:00 – 21:30',
+            '16:00 – 21:30',
             'Приймаємо замовлення до 21:30.',
             'Час доставки зазвичай становить 45-60 хвилин з моменту підтвердження замовлення.',
           ],
@@ -884,8 +881,7 @@ export const pageContent: Record<Locale, PageContent> = {
           heading: 'Часы доставки',
           content: [
             'Мы доставляем в следующие часы:',
-            '• Воскресенье – Четверг: 17:00 – 21:30',
-            '• Пятница – Суббота: 17:00 – 21:30',
+            '16:00 – 21:30',
             'Принимаем заказы до 21:30.',
             'Время доставки обычно составляет 45-60 минут с момента подтверждения заказа.',
           ],
