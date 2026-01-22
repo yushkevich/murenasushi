@@ -96,7 +96,7 @@ export default function HeroVideo() {
     // Set timeout to advance to next video
     fadeTimeoutRef.current = setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % heroVideos.length);
-    }, 3000); // 3 seconds per video
+    }, heroVideos[currentIndex].duration * 1000); 
 
     return () => {
       if (fadeTimeoutRef.current) {
