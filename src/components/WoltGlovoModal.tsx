@@ -2,12 +2,14 @@
 
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { trackSelectContent } from '@/src/lib/ga';
 
 interface WoltGlovoModalProps {
   isOpen: boolean;
   onClose: () => void;
   woltUrl: string;
   glovoUrl: string;
+  locale: string;
   title?: string;
   closeLabel?: string;
 }
@@ -17,11 +19,34 @@ export default function WoltGlovoModal({
   onClose, 
   woltUrl, 
   glovoUrl,
+  locale,
   title = 'Order Delivery',
   closeLabel = 'Close modal'
 }: WoltGlovoModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  // Track Wolt link click
+  const handleWoltClick = () => {
+    trackSelectContent({
+      content_type: 'cta',
+      content_id: 'wolt',
+      placement: 'modal',
+      lang: locale,
+      link_url: woltUrl,
+    });
+  };
+
+  // Track Glovo link click
+  const handleGlovoClick = () => {
+    trackSelectContent({
+      content_type: 'cta',
+      content_id: 'glovo',
+      placement: 'modal',
+      lang: locale,
+      link_url: glovoUrl,
+    });
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -93,6 +118,7 @@ export default function WoltGlovoModal({
             href={woltUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleWoltClick}
             className="block w-full px-6 py-4 bg-[#009DE0] text-white text-center font-semibold rounded-lg hover:bg-[#0086C3] transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
           >
             Wolt
@@ -101,6 +127,7 @@ export default function WoltGlovoModal({
             href={glovoUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleGlovoClick}
             className="block w-full px-6 py-4 bg-[#FFC244] text-black text-center font-semibold rounded-lg hover:bg-[#FFB020] transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
           >
             Glovo

@@ -107,10 +107,11 @@ export default async function LangPage({ params }: PageProps) {
         restaurantHoursLabel={content.labels.restaurantHours}
         deliveryHoursLabel={content.labels.deliveryHours}
         deliveryLabel={content.labels.delivery}
+        locale={locale}
       />
 
       {/* Gallery */}
-      <GalleryCollage title={content.gallery.title} />
+      <GalleryCollage title={content.gallery.title} locale={locale} />
     </>
   );
 }

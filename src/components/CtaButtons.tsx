@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import WoltGlovoModal from './WoltGlovoModal';
+import { trackSelectContent, trackGenerateLead } from '@/src/lib/ga';
 
 interface CtaButtonsProps {
   reservationLabel: string;
@@ -30,6 +31,38 @@ export default function CtaButtons({
   // Check if delivery URL is internal
   const isInternalDelivery = deliveryUrl.startsWith('/');
 
+  // Track reservation button click
+  const handleReservationClick = () => {
+    trackGenerateLead({
+      lead_source: 'reservation',
+      placement: 'hero',
+      lang: locale,
+      link_url: reservationUrl,
+    });
+  };
+
+  // Track delivery button click
+  const handleDeliveryClick = () => {
+    trackSelectContent({
+      content_type: 'cta',
+      content_id: 'delivery',
+      placement: 'hero',
+      lang: locale,
+      link_url: deliveryUrl,
+    });
+  };
+
+  // Track Wolt/Glovo button click
+  const handleWoltGlovoClick = () => {
+    trackSelectContent({
+      content_type: 'cta',
+      content_id: 'wolt_glovo',
+      placement: 'hero',
+      lang: locale,
+    });
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <div className="flex flex-col gap-4 justify-center items-stretch max-w-md mx-auto w-full px-4">
@@ -38,6 +71,7 @@ export default function CtaButtons({
           href={reservationUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleReservationClick}
           className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
         >
           {reservationLabel}
@@ -47,6 +81,7 @@ export default function CtaButtons({
         {isInternalDelivery ? (
           <Link
             href={`/${locale}${deliveryUrl}`}
+            onClick={handleDeliveryClick}
             className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
           >
             {deliveryLabel}
@@ -56,6 +91,7 @@ export default function CtaButtons({
             href={deliveryUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleDeliveryClick}
             className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
           >
             {deliveryLabel}
@@ -64,7 +100,7 @@ export default function CtaButtons({
 
         {/* Wolt/Glovo Button */}
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={handleWoltGlovoClick}
           className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
         >
           {woltGlovoLabel}
@@ -77,6 +113,7 @@ export default function CtaButtons({
         woltUrl={woltUrl}
         glovoUrl={glovoUrl}
         title={woltGlovoLabel}
+        locale={locale}
       />
     </>
   );

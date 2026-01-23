@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import LanguageSwitcher from './LanguageSwitcher';
 import { siteContent, instagramUrl, type Locale } from '@/src/content/siteContent';
+import { trackGenerateLead } from '@/src/lib/ga';
 
 interface HeaderProps {
   locale: Locale;
@@ -11,6 +12,26 @@ interface HeaderProps {
 
 export default function Header({ locale }: HeaderProps) {
   const content = siteContent[locale];
+
+  // Track general phone link click
+  const handleGeneralPhoneClick = () => {
+    trackGenerateLead({
+      lead_source: 'call_general',
+      placement: 'header',
+      lang: locale,
+      phone: content.phone.replace(/\s/g, ''),
+    });
+  };
+
+  // Track delivery phone link click
+  const handleDeliveryPhoneClick = () => {
+    trackGenerateLead({
+      lead_source: 'call_delivery',
+      placement: 'header',
+      lang: locale,
+      phone: content.phoneDelivery.replace(/\s/g, ''),
+    });
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 bg-gradient-to-b from-black/60 via-black/40 to-transparent">
@@ -73,6 +94,7 @@ export default function Header({ locale }: HeaderProps) {
           <div className="flex items-center gap-3 sm:gap-4 text-base sm:text-lg">
             <a
               href={`tel:${content.phone.replace(/\s/g, '')}`}
+              onClick={handleGeneralPhoneClick}
               className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white rounded px-1"
               aria-label="Call restaurant"
             >
@@ -81,6 +103,7 @@ export default function Header({ locale }: HeaderProps) {
             <span className="text-white/50">|</span>
             <a
               href={`tel:${content.phoneDelivery.replace(/\s/g, '')}`}
+              onClick={handleDeliveryPhoneClick}
               className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white rounded px-1"
               aria-label="Call delivery"
             >

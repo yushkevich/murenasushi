@@ -1,6 +1,7 @@
 'use client';
 
 import { getGoogleMapsUrl, instagramUrl } from '@/src/content/siteContent';
+import { trackGenerateLead } from '@/src/lib/ga';
 
 interface InfoSectionProps {
   hours: string;
@@ -14,6 +15,7 @@ interface InfoSectionProps {
   restaurantHoursLabel: string;
   deliveryHoursLabel: string;
   deliveryLabel: string;
+  locale: string;
 }
 
 export default function InfoSection({ 
@@ -27,9 +29,29 @@ export default function InfoSection({
   instagramLabel,
   restaurantHoursLabel,
   deliveryHoursLabel,
-  deliveryLabel
+  deliveryLabel,
+  locale
 }: InfoSectionProps) {
   const googleMapsUrl = getGoogleMapsUrl(address);
+
+  // Track info section phone clicks
+  const handleGeneralPhoneClick = () => {
+    trackGenerateLead({
+      lead_source: 'call_general',
+      placement: 'info_section',
+      lang: locale,
+      phone: phone.replace(/\s/g, ''),
+    });
+  };
+
+  const handleDeliveryPhoneClick = () => {
+    trackGenerateLead({
+      lead_source: 'call_delivery',
+      placement: 'info_section',
+      lang: locale,
+      phone: phoneDelivery.replace(/\s/g, ''),
+    });
+  };
 
   return (
     <section className="py-16 sm:py-20 lg:py-24" style={{ backgroundColor: 'rgba(21, 20, 51, 0.2)' }}>
@@ -49,12 +71,14 @@ export default function InfoSection({
           <div className="space-y-3">
             <a
               href={`tel:${phone.replace(/\s/g, '')}`}
+              onClick={handleGeneralPhoneClick}
               className="block text-lg sm:text-xl text-text-muted hover:text-text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue rounded px-2"
             >
               {callLabel}: {phone}
             </a>
             <a
               href={`tel:${phoneDelivery.replace(/\s/g, '')}`}
+              onClick={handleDeliveryPhoneClick}
               className="block text-lg sm:text-xl text-text-muted hover:text-text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue rounded px-2"
             >
               {deliveryLabel}: {phoneDelivery}

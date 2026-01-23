@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { locales, type Locale } from '@/src/content/siteContent';
+import { trackSelectContent } from '@/src/lib/ga';
 
 const localeLabels: Record<Locale, string> = {
   pl: 'PL',
@@ -53,6 +54,14 @@ export default function LanguageSwitcher() {
   }, [isOpen]);
 
   const handleLocaleSelect = (locale: Locale) => {
+    // Track language switch event
+    trackSelectContent({
+      content_type: 'language',
+      content_id: 'switch',
+      from_language: currentLocale,
+      to_language: locale,
+    });
+
     const newPath = pathname.replace(`/${currentLocale}`, `/${locale}`);
     router.push(newPath);
     setIsOpen(false);

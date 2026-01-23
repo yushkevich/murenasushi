@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { instagramUrl, siteContent, type Locale } from '@/src/content/siteContent';
+import { trackGenerateLead } from '@/src/lib/ga';
 
 interface FooterProps {
   locale: Locale;
@@ -8,6 +11,25 @@ interface FooterProps {
 export default function Footer({ locale }: FooterProps) {
   const content = siteContent[locale];
   const currentYear = new Date().getFullYear();
+
+  // Track footer phone clicks
+  const handleGeneralPhoneClick = () => {
+    trackGenerateLead({
+      lead_source: 'call_general',
+      placement: 'footer',
+      lang: locale,
+      phone: content.phone.replace(/\s/g, ''),
+    });
+  };
+
+  const handleDeliveryPhoneClick = () => {
+    trackGenerateLead({
+      lead_source: 'call_delivery',
+      placement: 'footer',
+      lang: locale,
+      phone: content.phoneDelivery.replace(/\s/g, ''),
+    });
+  };
 
   return (
     <footer className="text-text-primary py-12 sm:py-16" style={{ backgroundColor: 'rgba(27,31,34, 0.6)' }}>
@@ -19,12 +41,14 @@ export default function Footer({ locale }: FooterProps) {
             <div className="mt-3 space-y-2">
               <a
                 href={`tel:${content.phone.replace(/\s/g, '')}`}
+                onClick={handleGeneralPhoneClick}
                 className="text-sm text-text-muted hover:text-text-primary transition-colors block focus:outline-none focus:ring-2 focus:ring-accent-blue rounded"
               >
                 {content.labels.restaurant}: {content.phone}
               </a>
               <a
                 href={`tel:${content.phoneDelivery.replace(/\s/g, '')}`}
+                onClick={handleDeliveryPhoneClick}
                 className="text-sm text-text-muted hover:text-text-primary transition-colors block focus:outline-none focus:ring-2 focus:ring-accent-blue rounded"
               >
                 {content.labels.delivery}: {content.phoneDelivery}

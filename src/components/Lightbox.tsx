@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import { trackSelectContent } from '@/src/lib/ga';
 
 interface LightboxProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface LightboxProps {
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;
+  locale: string;
 }
 
 export default function Lightbox({
@@ -22,9 +24,38 @@ export default function Lightbox({
   onClose,
   onNext,
   onPrev,
+  locale,
 }: LightboxProps) {
   const lightboxRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  // Handle next image with tracking
+  const handleNext = () => {
+    if (currentIndex < totalImages - 1) {
+      trackSelectContent({
+        content_type: 'gallery',
+        content_id: 'navigate',
+        direction: 'next',
+        from_index: currentIndex,
+        to_index: currentIndex + 1,
+      });
+      onNext();
+    }
+  };
+
+  // Handle previous image with tracking
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      trackSelectContent({
+        content_type: 'gallery',
+        content_id: 'navigate',
+        direction: 'prev',
+        from_index: currentIndex,
+        to_index: currentIndex - 1,
+      });
+      onPrev();
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -51,9 +82,9 @@ export default function Lightbox({
     const handleArrow = (e: KeyboardEvent) => {
       if (!isOpen) return;
       if (e.key === 'ArrowLeft') {
-        onPrev();
+        handlePrev();
       } else if (e.key === 'ArrowRight') {
-        onNext();
+        handleNext();
       }
     };
 
@@ -101,7 +132,7 @@ export default function Lightbox({
 
         {currentIndex > 0 && (
           <button
-            onClick={onPrev}
+            onClick={handlePrev}
             className="absolute left-4 z-20 text-text-primary hover:text-text-muted transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue rounded p-2"
             aria-label="Previous image"
           >
@@ -113,7 +144,7 @@ export default function Lightbox({
 
         {currentIndex < totalImages - 1 && (
           <button
-            onClick={onNext}
+            onClick={handleNext}
             className="absolute right-4 z-20 text-text-primary hover:text-text-muted transition-colors focus:outline-none focus:ring-2 focus:ring-accent-blue rounded p-2"
             aria-label="Next image"
           >

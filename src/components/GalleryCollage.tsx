@@ -1,20 +1,31 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Lightbox from './Lightbox';
 import { galleryImages } from '@/src/config/galleryImages';
+import { trackSelectContent } from '@/src/lib/ga';
 
 interface GalleryCollageProps {
   title: string;
+  locale: string;
 }
 
 const imageCount = 18;
 
-export default function GalleryCollage({ title }: GalleryCollageProps) {
+export default function GalleryCollage({ title, locale }: GalleryCollageProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const lastScrollPosition = useRef<number>(0);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const openLightbox = (index: number) => {
+    // Track lightbox open event
+    trackSelectContent({
+      content_type: 'gallery',
+      content_id: 'open',
+      index,
+    });
     setLightboxIndex(index);
   };
 
@@ -33,6 +44,49 @@ export default function GalleryCollage({ title }: GalleryCollageProps) {
       setLightboxIndex(lightboxIndex - 1);
     }
   };
+
+  // Track mobile carousel swipe
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const handleScroll = () => {
+      // Clear existing timeout
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+
+      // Debounce scroll events - only track after scrolling stops
+      scrollTimeout.current = setTimeout(() => {
+        const currentScroll = carousel.scrollLeft;
+        const itemWidth = carousel.scrollWidth / galleryImages.length;
+        const currentIndex = Math.round(currentScroll / itemWidth);
+        const lastIndex = Math.round(lastScrollPosition.current / itemWidth);
+
+        // Only track if index changed
+        if (currentIndex !== lastIndex) {
+          const direction = currentIndex > lastIndex ? 'left' : 'right';
+          trackSelectContent({
+            content_type: 'gallery',
+            content_id: 'swipe',
+            direction,
+            from_index: lastIndex,
+            to_index: currentIndex,
+          });
+        }
+
+        lastScrollPosition.current = currentScroll;
+      }, 150);
+    };
+
+    carousel.addEventListener('scroll', handleScroll);
+    return () => {
+      carousel.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
+  }, []);
 
   // Grid layout configuration for collage effect
   // Using explicit classes for Tailwind to include them
@@ -140,7 +194,7 @@ export default function GalleryCollage({ title }: GalleryCollageProps) {
 
           {/* Mobile: Swipeable carousel with snap points */}
           <div className="md:hidden">
-            <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-4 scrollbar-hide -mx-4 px-4">
+            <div ref={carouselRef} className="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-4 scrollbar-hide -mx-4 px-4">
               {galleryImages.map((img, index) => (
                 <button
                   key={index}
@@ -187,6 +241,7 @@ export default function GalleryCollage({ title }: GalleryCollageProps) {
           onClose={closeLightbox}
           onNext={nextImage}
           onPrev={prevImage}
+          locale={locale}
         />
       )}
     </>
