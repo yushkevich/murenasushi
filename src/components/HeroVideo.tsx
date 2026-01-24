@@ -128,6 +128,13 @@ export default function HeroVideo() {
     setFailedVideos((prev) => new Set([...prev, index]));
   };
 
+  const handleVideoEnded = (index: number) => {
+    // Only advance if this is the current video
+    if (index === currentIndex) {
+      setCurrentIndex((prev) => (prev + 1) % heroVideos.length);
+    }
+  };
+
   if (prefersReducedMotion) {
     return (
       <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -172,7 +179,6 @@ export default function HeroVideo() {
                   videoRefs.current[index] = el;
                 }}
                 muted
-                loop
                 playsInline
                 preload={index === 0 ? 'metadata' : 'auto'}
                 poster={videoConfig.poster}
@@ -180,6 +186,7 @@ export default function HeroVideo() {
                 aria-label={`Murena restaurant hero video ${index + 1}`}
                 onLoadedData={() => handleVideoLoaded(index)}
                 onError={() => handleVideoError(index)}
+                onEnded={() => handleVideoEnded(index)}
               >
                 {videoConfig.srcWebm && (
                   <source src={videoConfig.srcWebm} type="video/webm" />
