@@ -72,7 +72,7 @@ export default function CtaButtons({
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleReservationClick}
-          className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
+          className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-white text-text-primary font-semibold text-sm sm:text-base md:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
         >
           {reservationLabel}
         </a>
@@ -82,7 +82,7 @@ export default function CtaButtons({
           <Link
             href={`/${locale}${deliveryUrl}`}
             onClick={handleDeliveryClick}
-            className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
+            className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-white text-text-primary font-semibold text-sm sm:text-base md:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
           >
             {deliveryLabel}
           </Link>
@@ -92,7 +92,7 @@ export default function CtaButtons({
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleDeliveryClick}
-            className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
+            className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-white text-text-primary font-semibold text-sm sm:text-base md:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
           >
             {deliveryLabel}
           </a>
@@ -101,7 +101,7 @@ export default function CtaButtons({
         {/* Wolt/Glovo Button */}
         <button
           onClick={handleWoltGlovoClick}
-          className="px-8 py-4 border-2 border-white text-text-primary font-semibold text-base sm:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
+          className="px-6 py-3 sm:px-8 sm:py-4 border-2 border-white text-text-primary font-semibold text-sm sm:text-base md:text-lg rounded-full hover:bg-white/10 hover:border-white/90 transition-all focus:outline-none focus:ring-4 focus:ring-white/50 text-center"
         >
           {woltGlovoLabel}
         </button>
